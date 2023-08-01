@@ -1,11 +1,9 @@
 import './Note.css'
-function Note (){
+function Note (prop){
     return (
         <div className="note">
-            <h1>To do</h1>
-            <p> Brush</p>
-            <p> Study</p>
-            <p> Lunch</p>
+            <h1 contentEditable="true">{prop.title}</h1>
+            <p contentEditable="true">{prop.content}</p>
         </div>
     )
 }
