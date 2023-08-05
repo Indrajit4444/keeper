@@ -8,10 +8,12 @@
     float: left;
   }
   .note h1 {
+    font-family: "McLaren", cursive;
     font-size: 1.1em;
     margin-bottom: 6px;
   }
   .note p {
+    font-family: "McLaren", cursive;
     font-size: 1.1em;
     margin-bottom: 10px;
     white-space: pre-wrap;
@@ -21,11 +23,13 @@
     position: relative;
     float: right;
     margin-right: 10px;
-    color: #f5ba13;
-    padding: 4px;
+    color: black;
     border: none;
-    border-radius: 15%;
-    height: 36px;
+    background: transparent;
     cursor: pointer;
     outline: none;
+  }
+  .note button:hover{
+    transform: scale(1.1);
+    color: rgb(177, 76, 39);
   }
