@@ -10,24 +10,40 @@ const delay = ms => new Promise(
 function Create(props){
   const [titleArea,setTitleArea]=useState(false);
   const [title,setTitle]=useState(false);
+  const [isTitleEmpty,handleIsTitleEmpty]=useState(true);
+  const [isContentEmpty,handleIsContentEmpty]=useState(true);
     function handleChange(event){
         const{name,value}=event.target;
+        // console.log(name);
+        if (name==='title'){
+          if (value==="")
+            handleIsTitleEmpty(true);
+          else handleIsTitleEmpty(false);
+        }
+        if (name==='content'){
+          if (value==="")
+            handleIsContentEmpty(true);
+          else handleIsContentEmpty(false);
+        }
         props.setNote((prev)=>
             ({...prev,[name]:value})
         )
     }
     function handleSubmit(event){
         event.preventDefault();
+        handleIsTitleEmpty(true);
+        handleIsContentEmpty(true);
         props.setNotes((prev)=>{
             return [...prev,props.note];
         })
         props.setNote({title:"",content:""});
     }
     const mouseOutHandle= async()=>{
-      setTitleArea(false);
-      await delay(300);
-      setTitle(false);
-      console.log("out")
+      if (isTitleEmpty && isContentEmpty){
+        setTitleArea(false);
+        await delay(300);
+        setTitle(false);
+      }
     }
     return <div>
     <form onSubmit={handleSubmit} onMouseOver={()=>{setTitleArea(true);setTitle(true)}} onMouseLeave={mouseOutHandle}>

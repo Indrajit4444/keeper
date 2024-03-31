@@ -6,7 +6,16 @@ function Note (prop){
     const [showNote,setShowNote]=useState(true)
     function handleClick(){
         setShowNote(false);
-        setTimeout(()=>{prop.setNotes((notes)=>notes.filter(note=>note!==prop.note))},300);
+        setTimeout(()=>{prop.setNotes((notes)=>{
+            notes.filter((note,idx,arr)=>{
+                if (note===prop.note){
+                    arr.splice(idx,1);
+                    return true;
+                }
+                return false;
+            })
+            return notes;
+        })},300);
     }
     return <Zoom in={showNote}>
         <div className="note">
